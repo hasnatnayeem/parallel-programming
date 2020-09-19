@@ -5,6 +5,8 @@
 #define TRUE  1
 #define FALSE 0
 
+int already_passed = 0;
+
 int repeatedSquare(long _b, unsigned int _e, int _m) {
     	long res = 1;
 	_b = _b % _m;
@@ -30,8 +32,10 @@ int millerRabinTest(long _d, long _n) {
   
     	long x = repeatedSquare(a, _d, _n); 
   
-    	if (x == 1  || x == _n-1) 
-       		return TRUE; 
+    	if (x == 1  || x == _n-1) {
+			already_passed = 1;
+       		return TRUE;
+		} 
   
     	while (_d != _n-1) { 
         	x = (x * x) % _n; 
@@ -39,8 +43,10 @@ int millerRabinTest(long _d, long _n) {
   
         	if (x == 1)      
 			return FALSE; 
-        	if (x == _n-1)    
+        	if (x == _n-1)  {
+already_passed = 1;
 			return TRUE; 
+			}  
     	} 
   
     	return FALSE; 
@@ -55,12 +61,13 @@ int isPrime(long _n, long _k) {
     	long d = _n - 1; 
 		printf("n = %ld\n", *&_n);
 		printf("long d = _n - 1;  ->   d = %ld\n", *&d);
-    	while (d % 2 == 0) 
+    	while (d % 2 == 0) {
         	d /= 2; 
-			printf("while (d mod 2 == 0)  d = %ld\n", *&d);
+			printf("while (d mod 2 == 0)  d = %ld\n", *&d);	
+		}
   
 
-    	for (long i = 0; i < _k; i++) { 
+    	for (long i = 0; i < _k && !already_passed; i++) { 
 
 			printf("i = %ld, _k = %ld\n", i, _k);
         	if (!millerRabinTest(d, _n)) 
@@ -71,7 +78,7 @@ int isPrime(long _n, long _k) {
 } 
   
 int main(int argc, char** argv) { 
-    	int numberOfThreads = 10; 
+    	int numberOfThreads = 5; 
   
     	printf("Prime test \nPress -1 for quit\n"); 
 
