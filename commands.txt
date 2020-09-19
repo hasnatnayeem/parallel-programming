@@ -1,0 +1,5 @@
+clear && gcc test.c -o prime -fopenmp -lm && ./prime
+
+mpicc -o out test.c
+
+clear && mpicc -o out test.c && mpirun out

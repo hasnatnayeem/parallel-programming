@@ -40,12 +40,14 @@ int millerRabinTest(long _d, long _n) {
     	while (_d != _n-1) { 
         	x = (x * x) % _n; 
         	_d *= 2; 
+
+			printf("MR  x = %ld, _d = %ld\n", x, _d);
   
         	if (x == 1)      
 			return FALSE; 
         	if (x == _n-1)  {
-already_passed = 1;
-			return TRUE; 
+				already_passed = 1;
+				return TRUE; 
 			}  
     	} 
   
@@ -59,11 +61,11 @@ int isPrime(long _n, long _k) {
 		return TRUE; 
   
     	long d = _n - 1; 
-		printf("n = %ld\n", *&_n);
-		printf("long d = _n - 1;  ->   d = %ld\n", *&d);
+		// printf("n = %ld\n", *&_n);
+		// printf("long d = _n - 1;  ->   d = %ld\n", *&d);
     	while (d % 2 == 0) {
         	d /= 2; 
-			printf("while (d mod 2 == 0)  d = %ld\n", *&d);	
+			// printf("while (d mod 2 == 0)  d = %ld\n", *&d);	
 		}
   
 
@@ -78,9 +80,9 @@ int isPrime(long _n, long _k) {
 } 
   
 int main(int argc, char** argv) { 
-    	int numberOfThreads = 5; 
+	int numberOfThreads = 5; 
   
-    	printf("Prime test \nPress -1 for quit\n"); 
+	printf("Prime test \nPress -1 for quit\n"); 
 
 	long buf;
 	while (TRUE) {
